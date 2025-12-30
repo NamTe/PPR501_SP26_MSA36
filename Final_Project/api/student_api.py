@@ -51,7 +51,7 @@ def get_students() -> list[StudentResponse]:
     return lst
 
 
-@router.get("/students/{student_id}", summary="Get students by student_id")
+@router.get("/students/{student_id}", summary="Get student by student_id")
 def get_student(student_id: str) -> StudentResponse:
     return StudentResponse(
         student_id=student_id,
