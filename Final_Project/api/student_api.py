@@ -13,7 +13,7 @@ router = APIRouter(
 )
 
 
-@router.post("/students", status_code=status.HTTP_201_CREATED)
+@router.post("/students", status_code=status.HTTP_201_CREATED, summary="Create a new student")
 def create_student(
         payload: StudentRequest) -> StudentResponse:
     student_id = f"MSA36{str(uuid.uuid4())[:8]}"
@@ -21,7 +21,19 @@ def create_student(
     return student
 
 
-@router.get("/students")
+@router.put("/students/{student_id}", summary="Update a student")
+def update_student(student_id: str, payload: StudentRequest) -> StudentResponse:
+    student = StudentResponse(student_id=student_id, **payload.model_dump())
+    return student
+
+
+@router.delete("/students/{student_id}", summary="Delete a student", status_code=status.HTTP_204_NO_CONTENT)
+def delete_student(student_id: str) -> None:
+    print(student_id)
+    return
+
+
+@router.get("/students", summary="Get all students")
 def get_students() -> list[StudentResponse]:
     lst = list()
     for i in range(1, 10):
@@ -39,7 +51,7 @@ def get_students() -> list[StudentResponse]:
     return lst
 
 
-@router.get("/students/{student_id}")
+@router.get("/students/{student_id}", summary="Get students by student_id")
 def get_student(student_id: str) -> StudentResponse:
     return StudentResponse(
         student_id=student_id,
