@@ -1,0 +1,101 @@
+first_name,last_name,email,date_of_birth,home_town,math_score,literature_score,english_score
+Minh,Le,minh.le88@gmail.com,2001-03-10,Bac Ninh,7.6,4.9,9.8
+Nga,Le,nga.le17@gmail.com,2004-02-05,Bac Ninh,6.5,8.7,4.5
+Long,Tran,long.tran93@gmail.com,2006-12-07,Bac Ninh,6.2,8.4,5.6
+Long,Ho,long.ho96@gmail.com,2001-05-11,Hai Phong,4.3,7.8,6.7
+Long,Le,long.le12@gmail.com,2000-05-30,Da Nang,8.2,3.8,6.3
+Nga,Do,nga.do67@gmail.com,2003-10-18,Hai Phong,7.2,9.0,9.4
+Nga,Pham,nga.pham85@gmail.com,2006-09-05,Ha Noi,6.7,9.8,4.3
+An,Dang,an.dang80@gmail.com,2000-02-01,HCM,7.4,6.6,9.6
+Minh,Phan,minh.phan74@gmail.com,2006-10-14,Ha Noi,4.4,5.2,9.9
+Nga,Do,nga.do34@gmail.com,2006-10-02,HCM,9.0,5.1,9.5
+Hung,Dang,hung.dang92@gmail.com,2002-03-05,Da Nang,3.4,9.1,7.8
+Mai,Tran,mai.tran13@gmail.com,2003-09-20,Hai Phong,4.0,9.8,3.4
+Tuan,Tran,tuan.tran6@gmail.com,2001-09-21,Hai Phong,3.7,7.2,7.5
+Hoa,Ho,hoa.ho7@gmail.com,2005-03-29,Thai Nguyen,3.9,6.8,3.2
+Minh,Phan,minh.phan9@gmail.com,2003-07-09,HCM,3.0,4.5,3.1
+Minh,Trinh,minh.trinh94@gmail.com,2006-10-11,HCM,3.4,7.3,9.9
+Hung,Do,hung.do33@gmail.com,2001-01-25,Nam Dinh,7.3,5.3,3.5
+Nam,Phan,nam.phan100@gmail.com,2003-07-28,Hung Yen,4.1,3.7,3.7
+Tuan,Le,tuan.le61@gmail.com,2002-12-02,Hung Yen,9.8,8.5,3.6
+Hung,Phan,hung.phan47@gmail.com,2004-03-07,Hung Yen,9.6,6.7,4.3
+Hung,Phan,hung.phan57@gmail.com,2005-05-21,Hai Phong,9.2,8.0,9.8
+Mai,Pham,mai.pham2@gmail.com,2000-10-14,Da Nang,6.3,3.7,4.7
+Nga,Tran,nga.tran14@gmail.com,2005-08-05,Can Tho,,7.4,8.3
+Mai,Nguyen,mai.nguyen95@gmail.com,2001-12-22,Thai Nguyen,3.6,4.1,9.9
+Long,Do,long.do53@gmail.com,2006-02-26,Nam Dinh,7.0,6.9,9.6
+Lan,Phan,lan.phan18@gmail.com,2004-08-20,Hung Yen,4.5,5.8,3.8
+Mai,Nguyen,mai.nguyen27@gmail.com,2003-08-08,Thai Nguyen,5.1,3.3,9.6
+Tuan,Tran,tuan.tran98@gmail.com,2005-04-15,Da Nang,6.8,3.9,5.1
+Lan,Pham,lan.pham55@gmail.com,2001-11-27,Hai Phong,5.3,3.5,7.2
+Mai,Ho,mai.ho52@gmail.com,2002-05-27,Da Nang,5.9,8.6,9.5
+Nga,Do,nga.do15@gmail.com,2001-04-28,HCM,5.1,3.3,7.5
+Hung,Phan,hung.phan71@gmail.com,2005-03-27,Bac Giang,9.0,6.7,9.6
+Tuan,Le,tuan.le50@gmail.com,2001-08-22,Bac Giang,5.7,5.5,6.5
+Mai,Pham,mai.pham75@gmail.com,2004-11-27,Hai Phong,3.9,4.7,7.8
+Minh,Trinh,minh.trinh20@gmail.com,2002-02-28,Bac Ninh,3.6,5.7,7.5
+Lan,Vu,lan.vu40@gmail.com,2003-02-18,Hai Phong,7.4,9.8,7.8
+Minh,Do,minh.do78@gmail.com,2002-05-17,Nam Dinh,6.7,6.9,3.8
+Nga,Bui,nga.bui21@gmail.com,2006-06-24,Bac Ninh,3.3,6.3,4.0
+Long,Pham,long.pham45@gmail.com,2006-03-11,Bac Ninh,4.2,9.0,4.2
+Lan,Trinh,lan.trinh29@gmail.com,2000-02-01,Can Tho,5.8,4.3,6.4
+Lan,Bui,lan.bui89@gmail.com,2000-10-29,Thai Nguyen,6.8,4.6,5.7
+Nam,Pham,nam.pham8@gmail.com,2000-12-15,Bac Giang,6.6,9.5,6.0
+Minh,Pham,minh.pham63@gmail.com,2000-01-13,Nam Dinh,9.8,3.3,7.6
+Tuan,Do,tuan.do58@gmail.com,2001-10-22,Ha Noi,5.1,6.0,4.4
+Tuan,Vu,tuan.vu56@gmail.com,2001-02-08,Thai Nguyen,6.2,4.6,9.8
+Nga,Nguyen,nga.nguyen36@gmail.com,2002-08-02,Nam Dinh,3.8,7.3,6.2
+An,Ho,an.ho91@gmail.com,2006-09-14,HCM,3.2,4.7,4.6
+Hoa,Ho,hoa.ho90@gmail.com,2004-12-30,Bac Giang,7.0,6.0,6.5
+Lan,Phan,lan.phan60@gmail.com,2001-07-08,Hai Phong,5.9,6.9,6.2
+Minh,Dang,minh.dang30@gmail.com,2006-06-22,Hung Yen,6.0,4.3,7.8
+Hoa,Tran,hoa.tran35@gmail.com,2003-03-31,Hung Yen,9.4,8.1,7.5
+Minh,Ho,minh.ho11@gmail.com,2002-01-29,Bac Giang,6.8,3.9,3.0
+Long,Nguyen,long.nguyen77@gmail.com,2003-09-01,Can Tho,5.7,4.9,3.3
+Nga,Bui,nga.bui79@gmail.com,2005-11-13,HCM,5.6,4.9,6.5
+Hoa,Ho,hoa.ho62@gmail.com,2004-09-11,Ha Noi,6.0,7.9,8.1
+Nga,Bui,nga.bui42@gmail.com,2004-04-19,Bac Ninh,5.8,9.7,
+Mai,Pham,mai.pham72@gmail.com,2004-01-12,Can Tho,3.2,6.7,6.1
+Mai,Phan,mai.phan65@gmail.com,2004-10-01,Can Tho,5.7,9.1,9.8
+Hoa,Tran,hoa.tran46@gmail.com,2006-10-10,Nam Dinh,6.0,3.5,5.1
+Nga,Do,nga.do44@gmail.com,2005-10-01,Nam Dinh,9.7,9.4,4.4
+Hoa,Do,hoa.do48@gmail.com,2004-07-01,Can Tho,6.4,8.1,7.9
+Tuan,Le,tuan.le59@gmail.com,2006-01-18,Can Tho,9.7,9.7,
+Lan,Bui,lan.bui69@gmail.com,2003-01-07,Can Tho,5.5,7.0,6.5
+Lan,Trinh,lan.trinh51@gmail.com,2004-06-24,HCM,5.3,4.1,7.0
+An,Nguyen,an.nguyen86@gmail.com,2004-12-20,Bac Giang,6.4,8.8,8.9
+Mai,Tran,mai.tran3@gmail.com,2005-01-03,Ha Noi,6.6,5.6,7.7
+Hoa,Trinh,hoa.trinh38@gmail.com,2006-08-30,HCM,5.8,8.5,8.4
+Nam,Le,nam.le70@gmail.com,2005-09-03,Hung Yen,9.7,8.8,6.1
+Long,Do,long.do31@gmail.com,2005-03-31,Hai Phong,6.6,4.0,5.2
+Hung,Phan,hung.phan24@gmail.com,2000-09-20,Hai Phong,6.1,3.9,9.5
+Long,Trinh,long.trinh43@gmail.com,2005-11-25,Ha Noi,5.5,3.8,9.0
+An,Ho,an.ho39@gmail.com,2000-07-12,Hung Yen,6.0,9.9,3.9
+An,Dang,an.dang23@gmail.com,2003-08-15,Nam Dinh,7.9,6.6,7.8
+Nam,Tran,nam.tran1@gmail.com,2004-01-21,Da Nang,5.6,6.6,4.6
+Tuan,Le,tuan.le19@gmail.com,2000-06-16,Can Tho,9.0,4.3,9.2
+An,Dang,an.dang41@gmail.com,2001-11-21,Thai Nguyen,9.3,5.3,9.1
+Long,Bui,long.bui87@gmail.com,2005-10-11,Hung Yen,9.7,8.7,8.9
+Nga,Vu,nga.vu25@gmail.com,2002-04-07,Thai Nguyen,3.4,3.7,5.8
+Nga,Bui,nga.bui97@gmail.com,2005-11-09,Bac Giang,6.4,9.8,8.2
+An,Vu,an.vu82@gmail.com,2006-11-18,Ha Noi,3.5,9.1,9.5
+Nga,Dang,nga.dang26@gmail.com,2000-01-31,Hai Phong,7.0,8.1,3.6
+Nam,Ho,nam.ho64@gmail.com,2006-05-13,HCM,5.4,6.7,6.5
+Hoa,Tran,hoa.tran10@gmail.com,2005-12-03,Bac Giang,9.1,7.0,6.8
+Nga,Bui,nga.bui32@gmail.com,2006-12-22,Hung Yen,9.1,4.5,9.5
+Minh,Bui,minh.bui66@gmail.com,2002-01-23,HCM,9.3,7.9,5.2
+Nga,Do,nga.do49@gmail.com,2003-07-02,Nam Dinh,5.4,8.9,3.2
+Long,Do,long.do76@gmail.com,2005-03-08,Ha Noi,8.6,8.5,5.6
+Long,Phan,long.phan83@gmail.com,2004-04-03,Bac Ninh,8.7,,5.0
+Lan,Bui,lan.bui5@gmail.com,2000-07-20,Ha Noi,3.1,8.5,6.1
+Hoa,Dang,hoa.dang73@gmail.com,2002-12-31,Bac Ninh,8.8,8.9,5.8
+Nam,Bui,nam.bui54@gmail.com,2006-12-07,Bac Ninh,9.2,8.6,6.5
+Mai,Dang,mai.dang28@gmail.com,2002-06-10,Hai Phong,3.1,7.8,6.5
+Lan,Do,lan.do22@gmail.com,2004-09-24,Thai Nguyen,3.6,6.8,6.6
+Hoa,Tran,hoa.tran16@gmail.com,2006-03-16,HCM,9.2,4.6,4.5
+Mai,Trinh,mai.trinh68@gmail.com,2006-06-14,Ha Noi,5.0,3.8,5.4
+Hoa,Trinh,hoa.trinh99@gmail.com,2003-06-28,Can Tho,7.4,6.5,6.7
+Hung,Bui,hung.bui37@gmail.com,2000-07-07,Da Nang,9.1,8.1,3.9
+Mai,Do,mai.do81@gmail.com,2005-10-11,Ha Noi,7.8,9.6,5.0
+Hung,Nguyen,hung.nguyen4@gmail.com,2002-06-23,Ha Noi,5.3,9.6,7.9
+Nga,Dang,nga.dang84@gmail.com,2001-07-05,Da Nang,3.8,8.1,9.3

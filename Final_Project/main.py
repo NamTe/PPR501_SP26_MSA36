@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from api import student_api
 from contextlib import asynccontextmanager
 
-from database.create_db_and_tables import create_db_and_tables
+from database import create_db_and_tables
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
