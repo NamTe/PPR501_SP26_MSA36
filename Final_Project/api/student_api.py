@@ -4,7 +4,7 @@ import logging
 import uuid
 from typing import Annotated
 
-from fastapi import APIRouter, Depends, HTTPException, UploadFile
+from fastapi import APIRouter, Depends, HTTPException, UploadFile, File
 from sqlmodel import Session, select
 from starlette import status
 
@@ -121,7 +121,7 @@ def get_student(
     summary="Import students from CSV"
 )
 def import_students_from_csv(
-        file: UploadFile,
+        file: Annotated[UploadFile, File(description="CSV file contain students information")],
         session: SessionDep) -> StudentImportResponse:
     if not file.filename.lower().endswith(".csv"):
         raise HTTPException(
