@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Student Dashboard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600&family=Space+Grotesk:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/static/styles.css" />
+  </head>
+  <body>
+    <div class="backdrop">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="orb orb-3"></div>
+    </div>
+
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">MSA36 Student Services</p>
+        <h1>Student Performance Dashboard</h1>
+        <p class="subtitle">Manage students, track scores, and keep records current.</p>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="panel stats">
+        <div class="stat">
+          <p>Total Students</p>
+          <h2 id="stat-total">0</h2>
+        </div>
+        <div class="stat">
+          <p>Average Math</p>
+          <h2 id="stat-math">0.0</h2>
+        </div>
+        <div class="stat">
+          <p>Average Literature</p>
+          <h2 id="stat-literature">0.0</h2>
+        </div>
+        <div class="stat">
+          <p>Average English</p>
+          <h2 id="stat-english">0.0</h2>
+        </div>
+      </section>
+
+      <section class="panel form-panel">
+        <div class="panel-header">
+          <h3 id="form-title">Add Student</h3>
+          <p id="form-subtitle">Create a new record.</p>
+        </div>
+        <form id="student-form">
+          <div class="field-grid">
+            <label>
+              First Name
+              <input type="text" name="first_name" required />
+            </label>
+            <label>
+              Last Name
+              <input type="text" name="last_name" required />
+            </label>
+            <label>
+              Email
+              <input type="email" name="email" required />
+            </label>
+            <label>
+              Date of Birth
+              <input type="date" name="date_of_birth" required />
+            </label>
+            <label>
+              Home Town
+              <input type="text" name="home_town" required />
+            </label>
+            <label>
+              Math Score
+              <input type="number" name="math_score" step="0.1" min="0" max="10" />
+            </label>
+            <label>
+              Literature Score
+              <input type="number" name="literature_score" step="0.1" min="0" max="10" />
+            </label>
+            <label>
+              English Score
+              <input type="number" name="english_score" step="0.1" min="0" max="10" />
+            </label>
+          </div>
+          <div class="form-actions">
+            <button class="secondary" id="cancel-btn" type="button">Cancel</button>
+            <button class="ghost" id="refresh-btn" type="button">Refresh</button>
+            <button class="primary" type="submit">Save Student</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel table-panel">
+        <div class="panel-header">
+          <h3>Student Roster</h3>
+          <div class="table-actions">
+            <input id="search-input" type="search" placeholder="Search by name, email, or hometown" />
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>DOB</th>
+                <th>Home Town</th>
+                <th>Math</th>
+                <th>Literature</th>
+                <th>English</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="student-rows">
+              <tr>
+                <td colspan="9" class="empty">Loading students...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+    <script src="/static/app.js"></script>
+  </body>
+</html>
