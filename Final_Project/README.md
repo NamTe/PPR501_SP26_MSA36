@@ -14,6 +14,39 @@ Run the below command to download the dependencies.
 pip install -r requirements.txt
 ```
 
+### 2.1 Install ChromeDriver (for crawling rendered HTML)
+The crawler uses Selenium with Google Chrome. Install ChromeDriver and make sure it is in your `PATH`.
+
+- macOS (Homebrew):
+```commandline
+brew install chromedriver
+```
+
+- macOS (manual):
+  1) Download from https://googlechromelabs.github.io/chrome-for-testing/
+  2) Unzip and move `chromedriver` to `/usr/local/bin`
+  3) Ensure it is executable: `chmod +x /usr/local/bin/chromedriver`
+
+- Windows:
+  1) Download from https://googlechromelabs.github.io/chrome-for-testing/
+  2) Unzip and add the folder to the System `PATH`
+
+- Linux (Debian/Ubuntu):
+```commandline
+sudo apt-get update
+sudo apt-get install -y chromium-chromedriver
+```
+
+Verify installation:
+```commandline
+chromedriver --version
+```
+
+If you prefer not to add ChromeDriver to `PATH`, place it in the project folder and pass the path:
+```commandline
+python crawl_students.py --url http://127.0.0.1:8000 --driver-path ./chromedriver-mac-arm64/chromedriver --output students_clean.csv
+```
+
 ### 3. Run the application
 To start the service let run the below command
 ```commandline
