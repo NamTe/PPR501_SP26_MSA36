@@ -9,6 +9,8 @@ from selenium.webdriver.chrome.options import Options as ChromeOptions
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service as ChromeService
 from selenium.webdriver.support.ui import WebDriverWait
+from sklearn.preprocessing import StandardScaler
+import matplotlib.pyplot as plt
 
 
 def extract_rows_from_html(html_text: str) -> list[dict]:
@@ -125,6 +127,9 @@ def clean_data(records: list[dict]) -> pd.DataFrame:
         rounded = np.where(frac > 0.5, np.ceil(df[column]), base)
         df[column] = np.where(np.isclose(frac, 0.5), base + 0.5, rounded)
 
+    total_scores = df[score_columns].sum(axis=1)
+    df["graduated"] = np.where(total_scores > 18, 1, 0)
+
     # Parse dates with day-first bias, then retry with month-first for failures.
     parsed_dates = pd.to_datetime(
         df["date_of_birth"], errors="coerce", dayfirst=True, infer_datetime_format=True
@@ -144,66 +149,137 @@ def clean_data(records: list[dict]) -> pd.DataFrame:
 
     return df
 
-
-def build_analysis(df: pd.DataFrame) -> pd.DataFrame:
-    # Produce per-subject aggregates overall and by hometown.
+def convert_to_vector_data(df: pd.DataFrame) -> pd.DataFrame:
+    # Encode categorical columns and scale numeric columns for modeling.
     if df.empty:
-        return pd.DataFrame(columns=["scope", "home_town", "subject", "metric", "value"])
+        return df
 
-    score_columns = ["math_score", "literature_score", "english_score"]
-    rows = []
+    data = df.copy()
+    original_numeric_cols = [
+        column for column in data.columns if pd.api.types.is_numeric_dtype(data[column])
+    ]
+    if "date_of_birth" in data.columns:
+        parsed_dob = pd.to_datetime(
+            data["date_of_birth"], errors="coerce", dayfirst=True
+        )
+        data["date_of_birth"] = parsed_dob.map(
+            lambda value: value.toordinal() if pd.notna(value) else np.nan
+        )
+        data["date_of_birth"] = pd.to_numeric(data["date_of_birth"], errors="coerce")
 
-    # Overall aggregates for each subject.
-    for column in score_columns:
-        series = df[column].dropna()
-        if not series.empty:
-            rows.append(
-                {"scope": "overall", "home_town": "", "subject": column, "metric": "avg", "value": series.mean()}
-            )
-            rows.append(
-                {"scope": "overall", "home_town": "", "subject": column, "metric": "min", "value": series.min()}
-            )
-            rows.append(
-                {"scope": "overall", "home_town": "", "subject": column, "metric": "max", "value": series.max()}
-            )
+    numeric_cols = list(original_numeric_cols)
+    if "date_of_birth" in data.columns and "date_of_birth" not in numeric_cols:
+        numeric_cols.append("date_of_birth")
+    categorical_cols = [column for column in data.columns if column not in numeric_cols]
 
-    # Per-hometown aggregates for each subject.
+    if categorical_cols:
+        data = pd.get_dummies(data, columns=categorical_cols, dummy_na=True, dtype=int)
+
+    if numeric_cols:
+        numeric_cols = [column for column in numeric_cols if column in data.columns]
+        if numeric_cols:
+            scaler = StandardScaler()
+            data[numeric_cols] = scaler.fit_transform(data[numeric_cols].astype(float))
+
+    return data
+
+def build_analysis():
+    # Produce histogram from the cleaned CSV without adding new columns.
+    data_path = Path("students_clean.csv")
+    if data_path.exists():
+        df = pd.read_csv(data_path, decimal=",")
+    if df.empty:
+        return pd.DataFrame(
+            columns=[
+                "student_id",
+                "full_name",
+                "email",
+                "date_of_birth",
+                "home_town",
+                "math_score",
+                "literature_score",
+                "english_score",
+                "graduated"
+            ]
+        )
+    
+    math_data = pd.to_numeric(df["math_score"], errors="coerce").dropna()
+    literature_data = pd.to_numeric(df["literature_score"], errors="coerce").dropna()
+    english_data = pd.to_numeric(df["english_score"], errors="coerce").dropna()
+
+    bins = np.arange(0, 11)
+    bin_centers = bins[:-1] + 0.5
+    bar_width = 0.25
+
+    math_counts, _ = np.histogram(math_data, bins=bins, range=(0, 10))
+    literature_counts, _ = np.histogram(literature_data, bins=bins, range=(0, 10))
+    english_counts, _ = np.histogram(english_data, bins=bins, range=(0, 10))
+
+    fig, axes = plt.subplots(1, 3, figsize=(18, 5), layout="constrained")
+    ax_hist = axes[0]
+    ax_hist.bar(
+        bin_centers - bar_width,
+        math_counts,
+        width=bar_width,
+        color="steelblue",
+        edgecolor="white",
+        label="Math",
+    )
+    ax_hist.bar(
+        bin_centers,
+        literature_counts,
+        width=bar_width,
+        color="seagreen",
+        edgecolor="white",
+        label="Literature",
+    )
+    ax_hist.bar(
+        bin_centers + bar_width,
+        english_counts,
+        width=bar_width,
+        color="darkorange",
+        edgecolor="white",
+        label="English",
+    )
+
+    ax_hist.set_title("Score Distribution by Subject")
+    ax_hist.set_xlabel("Score range")
+    ax_hist.set_ylabel("Count")
+    ax_hist.set_xticks(bin_centers)
+    ax_hist.set_xticklabels([f"{i}-{i+1}" for i in range(0, 10)])
+    ax_hist.set_xlim(0, 10)
+    ax_hist.legend()
+
+    ax_pie = axes[1]
     if "home_town" in df.columns:
-        grouped = df.groupby("home_town", dropna=False)
-        for home_town, group in grouped:
-            for column in score_columns:
-                series = group[column].dropna()
-                if series.empty:
-                    continue
-                rows.append(
-                    {
-                        "scope": "hometown",
-                        "home_town": home_town,
-                        "subject": column,
-                        "metric": "avg",
-                        "value": series.mean(),
-                    }
-                )
-                rows.append(
-                    {
-                        "scope": "hometown",
-                        "home_town": home_town,
-                        "subject": column,
-                        "metric": "min",
-                        "value": series.min(),
-                    }
-                )
-                rows.append(
-                    {
-                        "scope": "hometown",
-                        "home_town": home_town,
-                        "subject": column,
-                        "metric": "max",
-                        "value": series.max(),
-                    }
-                )
+        home_town_counts = df["home_town"].fillna("Unknown").value_counts()
+        ax_pie.pie(
+            home_town_counts.values,
+            labels=home_town_counts.index,
+            autopct="%1.1f%%",
+            startangle=90,
+        )
+        ax_pie.set_title("Students by Home Town")
+    else:
+        ax_pie.axis("off")
 
-    return pd.DataFrame(rows)
+    ax_grad = axes[2]
+    if "graduated" in df.columns:
+        grad_counts = df["graduated"].fillna(0).astype(int).value_counts().sort_index()
+        labels = ["Not Graduated", "Graduated"]
+        values = [grad_counts.get(0, 0), grad_counts.get(1, 0)]
+        ax_grad.pie(
+            values,
+            labels=labels,
+            autopct="%1.1f%%",
+            startangle=90,
+        )
+        ax_grad.set_title("Graduation Status (%)")
+    else:
+        ax_grad.axis("off")
+
+    fig.savefig("students_charts.png", dpi=150)
+    plt.close(fig)
 
 
 def main() -> None:
@@ -249,12 +325,12 @@ def main() -> None:
         html_text = fetch_rendered_html(args.url, args.timeout_ms, args.driver_path)
     records = extract_rows_from_html(html_text)
     cleaned_df = clean_data(records)
-    analysis_df = build_analysis(cleaned_df)
+    vector_df = convert_to_vector_data(cleaned_df)
     with open(args.output, "w", encoding="utf-8", newline="") as handle:
-        # Write the cleaned data first, then a blank line, then the analysis table.
         cleaned_df.to_csv(handle, index=False, float_format="%.1f", decimal=",")
         handle.write("\n")
-        analysis_df.to_csv(handle, index=False, float_format="%.2f", decimal=",")
+    vector_df.to_csv("students_vector.csv", index=False)
+    build_analysis()
 
 
 if __name__ == "__main__":
