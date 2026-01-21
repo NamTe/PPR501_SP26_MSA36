@@ -34,19 +34,55 @@ def random_score():
         return None
     return round(random.uniform(3.0, 10.0), 1)
 
+def generate_email(first_name_str: str, last_name_str: str) -> str | None:
+    if random.random() < 0.05:
+        # some invalid data
+        return None
+    if first_name_str is None and last_name_str is None:
+        return None
+    elif first_name_str is None and last_name_str is not None:
+        return f"{last_name_str.lower()}{i}@gmail.com"
+    elif first_name_str is not None and last_name_str is None:
+        return f"{first_name_str.lower()}{i}@gmail.com"
+
+    return f"{first_name_str.lower()}.{last_name_str.lower()}{i}@gmail.com"
+
+def generate_dob() -> str | None:
+    if random.random() < 0.03:
+        # some invalid data
+        return None
+    return random_date().isoformat()
+
+def generate_home_town() -> str | None:
+    if random.random() < 0.03:
+        return None
+    return random.choice(home_towns)
 
 students = []
 
+
+def generate_first_name() -> str | None:
+    if random.random() < 0.02:
+        return None
+    return random.choice(first_names)
+
+
+def generate_last_name():
+    if random.random() < 0.02:
+        return None
+    return random.choice(last_names)
+
+
 for i in range(1, TOTAL_RECORDS + 1):
-    first_name = random.choice(first_names)
-    last_name = random.choice(last_names)
+    first_name = generate_first_name()
+    last_name = generate_last_name()
 
     student = {
         "first_name": first_name,
         "last_name": last_name,
-        "email": f"{first_name.lower()}.{last_name.lower()}{i}@gmail.com",
-        "date_of_birth": random_date().isoformat(),
-        "home_town": random.choice(home_towns),
+        "email": generate_email(first_name, last_name),
+        "date_of_birth": generate_dob(),
+        "home_town": generate_home_town(),
         "math_score": random_score(),
         "literature_score": random_score(),
         "english_score": random_score(),

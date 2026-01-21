@@ -44,7 +44,7 @@ chromedriver --version
 
 If you prefer not to add ChromeDriver to `PATH`, place it in the project folder and pass the path:
 ```commandline
-python crawl_students.py --url http://127.0.0.1:8000 --driver-path ./chromedriver-mac-arm64/chromedriver --output students_clean.csv
+python crawl_students.py --url http://127.0.0.1:8000 --driver-path /usr/bin/chromedriver --output students_clean.csv
 ```
 
 ### 3. Run the application
