@@ -107,6 +107,9 @@ def clean_data(records: list[dict]) -> pd.DataFrame:
         .str.replace("\xa0", " ", regex=False)
         .str.strip()
     )
+    df["email"] = df["email"].astype(str).str.strip().str.lower()
+    email_mask = df["email"].str.match(r"^[^@\s]+@gmail\.com$", na=False)
+    df.loc[~email_mask, "email"] = "system@gmail.com"
 
     # Remove duplicate students by ID.
     df = df.drop_duplicates(subset=["student_id"], keep="first")
