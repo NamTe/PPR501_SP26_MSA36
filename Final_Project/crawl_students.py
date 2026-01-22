@@ -101,6 +101,7 @@ def clean_data(records: list[dict]) -> pd.DataFrame:
     df["student_id"] = df["student_id"].astype(str).str.strip()
     df["full_name"] = df["full_name"].astype(str).str.strip()
     df["home_town"] = df["home_town"].astype(str).str.strip()
+    df.loc[df["home_town"].isin(["", "nan", "none"]), "home_town"] = "unknown"
     df["date_of_birth"] = (
         df["date_of_birth"]
         .astype(str)
